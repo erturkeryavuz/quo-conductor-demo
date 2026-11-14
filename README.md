@@ -27,6 +27,28 @@ The central view lays a session on one time axis: the run's phases, when the mod
 
 ![An approved write, applied and verified](media/quo-02-approved-write.png)
 
+## Private Product Preview
+
+The demo above is a replay of recorded sessions. QUO itself is a private application that runs on my own machine against its local backend; it is not publicly accessible, and nothing on this site connects to it.
+
+These screenshots are of that private application, taken during real runs against the backend with the same local model. The figure on the left is QUO's activity indicator: its colour follows the phase the backend records, the outer ring has one segment per step of the plan, and the open ring means it is waiting for a person.
+
+**A finished run, conversation first.** The request, QUO's answer, and what the journal records about the run.
+
+![QUO private app: a finished calculation run](media/private-quo-01-conversation.png)
+
+**An approval request.** A file write stops before anything is changed; the person approves or rejects exactly the action shown, bound to its digest.
+
+![QUO private app: a file write waiting for approval](media/private-quo-02-approval-request.png)
+
+**After approval, with Run details open.** The recorded decision and effect, the plan, the time score and the journal.
+
+![QUO private app: the approved write with the run details panel](media/private-quo-03-approved-with-run-details.png)
+
+**On a phone.**
+
+<img src="media/private-quo-04-phone.png" alt="QUO private app on a phone, waiting for approval" width="300">
+
 ## Limits
 
 - The model is small and local. It handles single-tool requests well and longer plans less reliably. Answers are shown exactly as produced, including one odd remark in the approved-write session.
