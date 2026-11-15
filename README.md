@@ -2,30 +2,40 @@
 
 **[Open the demo](https://erturkeryavuz.github.io/quo-conductor-demo/)**
 
-Recorded sessions of QUO, a local AI orchestration runtime, replayed from its own journal: what it planned, what it ran, what it asked a person to approve, and when the model was working.
+Recorded sessions of QUO, a local AI orchestration runtime, replayed from its own journal: what it planned, what it ran, what it asked a person to approve, and how each run ended.
 
 This is a recording. No model runs in your browser, there is no prompt box, and the page makes no network connections.
 
-![A file write waiting for a person's approval](media/quo-03-waiting-for-approval.png)
+![The opening view: the five stages of a run and the recorded sessions](media/quo-01-overview.png)
 
 ## What QUO is
 
-QUO turns a request into a plan, runs each step through a declared capability, and writes every event to a durable journal. A step that would change the workspace stops and waits for a person, who approves or rejects exactly the action shown. Runs can be cancelled, and every outcome is recorded.
+QUO turns a request into a plan, runs each step through a declared capability, and writes every event to a durable journal. A step that writes to the workspace stops and waits for a person, who approves or rejects exactly the action shown. Runs can be cancelled, and every outcome is recorded.
 
 ## What the demo shows
 
 Seven sessions recorded from the real backend over its WebSocket protocol, with a small local model (`llama3.2:3b`) on a demo workspace:
 
-- A calculation, a file read, a knowledge-base search and a host-load reading.
 - A file write that waits for a person and is **approved**, then applied.
-- A file write that is **rejected**: the step fails and nothing is written.
-- A run **cancelled** by the user partway through its plan.
+- A file write that is **refused**: the step never runs and nothing is written.
+- A run **cancelled** by the user as its three-step plan began; no step completed.
+- A calculation, a file read, a knowledge-base search and a host-load reading, none of which needed an approval.
 
-Each session plays at its recorded timing. The screen at any moment is rebuilt by passing the recorded journal entries through the same state reducers that QUO's own interface uses, so what you see is derived from the record rather than drawn separately.
+Each run is told as the same five stages: **request → plan → execute → decide → outcome**. The stages fill in as the replay reaches them, each with its recorded time, and the stage in progress is highlighted and kept in view while the session plays. Beside them, QUO's activity indicator follows the recorded phase: it turns amber while waiting for a person, green when a run is answered and red when it fails.
 
-The central view lays a session on one time axis: the run's phases, when the model was in use and for how long, each step, time spent waiting for a person, and tokens as they streamed. Beside it are the conversation, the plan, and the journal, where any entry opens to its recorded payload.
+The screen at any moment is rebuilt by passing the recorded journal entries through the same state reducers that QUO's own interface uses, so what you see is derived from the record rather than drawn separately. Each session plays at its recorded timing; the bar at the bottom plays, pauses, restarts, changes speed and seeks.
 
-![An approved write, applied and verified](media/quo-02-approved-write.png)
+![An approved write: the request, the decision and the answer](media/quo-02-approved-write.png)
+
+![A file write waiting for a person's approval](media/quo-03-waiting-for-approval.png)
+
+The **technical inspector** below the story holds the evidence underneath: run telemetry, one time axis with the run's phases, model use, steps, time spent waiting for a person and streamed tokens, and the full journal, where any entry opens to its recorded payload.
+
+![The technical inspector: telemetry, timeline and journal](media/quo-06-technical-inspector.png)
+
+<img src="media/quo-08-mobile-approval.png" alt="The replay on a phone, waiting for approval" width="300">
+
+A 37-second walkthrough: [`media/quo-walkthrough.mp4`](media/quo-walkthrough.mp4).
 
 ## Private Product Preview
 
@@ -57,7 +67,7 @@ These screenshots are of that private application, taken during real runs agains
 
 ## About this repository
 
-It holds only the built, static demo, its screenshots and a 38-second walkthrough video (`media/quo-walkthrough.mp4`). QUO's source code is private.
+It holds only the built, static demo, its screenshots and a walkthrough video. QUO's source code is private.
 
 Third-party licences: [THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md).
 
