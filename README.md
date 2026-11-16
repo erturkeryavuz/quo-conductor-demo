@@ -11,7 +11,7 @@
 A chat assistant can say what it would do. An agent that acts needs more:
 - a plan you can read;
 - tools that run within declared limits;
-- a person's sign-off before anything changes;
+- explicit authorization before workspace writes;
 - a record you can check afterwards.
 
 QUO is built around those four things.
